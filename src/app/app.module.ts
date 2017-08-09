@@ -1,18 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule, OverlayContainer } from "@angular/material";
 import { MdInputModule } from '@angular/material';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule, routedComponents } from "./app-routing.module";
+import { CanActivateAuthGuard } from './can-activate.service';
+import { UserProfileService } from './login/user-profile.service';
+import { LoginService } from "./login/login.service";
+import { RouterModule } from '@angular/router';
+import { AddClientComponentDialog } from './clients/clients.component';
+
+import './rxjs-extensions';
 import 'hammerjs';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    routedComponents,
+    AddClientComponentDialog
   ],
   imports: [
     BrowserModule,
@@ -20,9 +28,14 @@ import 'hammerjs';
     HttpModule,
     MaterialModule,
     MdInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    RouterModule,
+    ReactiveFormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [CanActivateAuthGuard, UserProfileService, LoginService],
+  bootstrap: [AppComponent],
+  entryComponents: [AddClientComponentDialog]
 })
+
 export class AppModule { }

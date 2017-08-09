@@ -1,0 +1,35 @@
+<div style="height: calc(100vh - 75px)" class="s-row s-jcontent-center">
+  <div style="border-radius: 2px; background-color: white; margin: 10px; width:90%; height: 100%" class="mat-elevation-z6">
+    <div class="mat-elevation-z6" style="border-radius: 2px; height: 130px; align-items: center; background-color: #D7D7D7">
+      <div class="s-row" style="align-items: center; justify-content: center; align-content: center;">
+        <div class="s-row" style="width: 90%; height: 90px; align-items: center; margin-left: 10px; margin-right: 10px;">
+          <md-icon style="color: #FF6633;" class="materiarl-icons">search</md-icon>
+          <md-input-container style="width: 100%; margin-left: 5px;">
+            <input mdInput placeholder="Buscar">
+          </md-input-container>
+        </div>
+        <button (click)="openDialog()" style="background-color: #FF6633;" md-fab><md-icon>add</md-icon></button>
+      </div>
+      <div class="header-list">
+        <md-card (click)="event()">
+          <div class="row-10">Codigo</div>
+          <div class="row-40">Nombre</div>
+          <div class="row-40">Direccion</div>
+          <div class="row-10">Telefono</div>
+        </md-card>
+      </div>
+    </div>
+    <div class="scroller2">
+      <div *ngFor="let client of clients">
+        <a class="custom-row" href="">
+          <md-card (click)="event()">
+            <div class="row-10">{{client.code}}</div>
+            <div class="row-40">{{client.name}}</div>
+            <div class="row-40">{{client.address}}</div>
+            <div class="row-10">{{client.phone}}</div>
+          </md-card>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
