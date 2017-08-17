@@ -1,0 +1,32 @@
+<md-toolbar color="primary" class="mat-elevation-z6" style="background-color: #262638">
+  <span style="color:#FF6633">S<span style="color:white">ONE</span></span>
+  <span class="toolbar-spacer"></span>
+  <button [md-menu-trigger-for]="menu" md-button>Manolo Alvarez</button>
+  <!-- <a href=""  style="color: white; text-decoration: none; font-size: 15px;">Manolo Alvarez</a> -->
+  <button md-icon-button><md-icon class="material-icons">notifications</md-icon></button>
+  <button md-icon-button ><md-icon>more_vert</md-icon></button>
+</md-toolbar>
+<div>
+  <div class="s-row" style="height: 100vh;">
+    <div color="primary" class="s-mini-sidenav">
+      <div style="margin-top: 15px;">
+        <div *ngFor="let option of options">
+          <a href="" [routerLink]="[option.url]" (click)="selectOption(option)" style="text-decoration:none;">
+            <div class="row-sidenav s-row" [ngClass]="{'select-option nohover' : option.isSelected}">
+              <md-icon [ngClass]="{'color-row': option.isSelected}" style="margin-left: 20px; margin-right: 5px;" class="material-icons">{{option.icon}}</md-icon>
+              <p [ngClass]="{'color-row': option.isSelected}" style="margin-left: 5px; margin-right: 5px; color: #CCCCCC">{{option.title}}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div style="width: 100%; height: 100%;">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div id="main" class="m-content">
+    <md-menu x-position="before" #menu="mdMenu">
+      <button md-menu-item [routerLink]="['/login']">Salir</button>
+    </md-menu>
+  </div>
+</div>

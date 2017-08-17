@@ -1,21 +1,22 @@
-<md-toolbar color="primary" class="s-toolbar mat-elevation-z8" style="height: 56px; background-color: #393856">
+<md-toolbar color="primary" class="s-toolbar mat-elevation-z8" style="height: 56px; background-color: #246da7">
   <span style="color:orangered">S<span style="color:white">ONE</span></span>
 </md-toolbar>
 <!-- TODO:Move some css styles to another files. -->
 <div class="s-row s-jcontent-center" style="margin-top: 5%">
-        <md-card class="mat-elevation-z8" style="width: 30%; background-color:#E4E4E4">
-      <form class="s-column" style="margin-left: 50px; margin-right: 50px;">
-        <h3 style="margin-bottom:20%;">Login</h3>
-        <md-input-container>
+  <md-card class="mat-elevation-z15" style="width: 30%; background-color:#E4E4E4">
+    <form class="s-column" style="margin-left: 50px; margin-right: 50px;">
+      <h3 style="color: #393856">Log in</h3>
+      <div style="margin-bottom: 50px; margin-top: 20px;">
+        <md-input-container style="width: 100%">
           <input mdInput placeholder="Username">
         </md-input-container>
-        <md-input-container>
+        <md-input-container style="width: 100%">
           <input mdInput placeholder="Password" type="password">
         </md-input-container>
-        <div class="s-row">
-          <button style="width:100%; margin-top: 20%" color="primary" (click) = "login()" class="mat-raised-button" md-raised-button="">Log in</button>
-        </div>
-      </form>
-    </md-card>
-    </div>
-
+      </div>
+      <div class="s-row" style="justify-content:flex-end;">
+        <button color="primary" (click)="login()" class="mat-raised-button" md-raised-button="">Ingresar</button>
+      </div>
+    </form>
+  </md-card>
+</div>

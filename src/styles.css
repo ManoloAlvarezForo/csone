@@ -36,10 +36,10 @@
   font-feature-settings: 'liga';
 }
 
-/* .material-icons.md-18 { font-size: 18px; }
+ .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; } */
+.material-icons.md-48 { font-size: 48px; } 
 
    @import '~@angular/material/prebuilt-themes/indigo-pink.css';   
 /* @import '~@angular/material/prebuilt-themes/pink-bluegrey.css'; */
@@ -48,8 +48,9 @@
 
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
   overflow: hidden;
+  height: 100%;
 }
 
 /* Responsive and flex box part
@@ -165,10 +166,76 @@ display: flex;
   flex-wrap: wrap;
 } 
 
-.scroller2 {
+.scroller-clients {
     width:100%;
-    height: calc(100vh - 205px);
+    height: calc(100vh - 165px);
     overflow: auto;
+}
+
+.scroller-client {
+    width:100%;
+    height: calc(100vh - 180px);
+    overflow: auto;
+}
+
+.height-row .mat-list-item-content {
+  height: 83px !important;
+}
+
+/*custom list*/
+.s-list-row:hover {
+ background-color:#c3cbd2 !important; 
+}
+
+span.mat-select-placeholder.ng-trigger.ng-trigger-transformPlaceholder {
+  font-size: 14px;
+}
+
+
+.s-list-item-content {
+display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    height: 48px;
+    padding: 0 16px;
+    position: relative;
+}
+
+.list-line-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 0 16px;
+}
+
+.list-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: inherit;
+}
+
+/* Angulat material sidenav */
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  background-color: #6E6B7C;
+  
+}
+
+.example-sidenav {
+  padding: 20px;
 }
 
 .s-mini-sidenav {
@@ -176,6 +243,11 @@ display: flex;
     width: 240px;
      box-shadow: 3px 0 6px rgba(0,0,0,.24);
     /* z-index: -1;  */
+}
+
+.docs-component-viewer-sidenav li>a.is-selected,.docs-component-viewer-sidenav li>a:focus,.docs-component-viewer-sidenav li>a:hover {
+    background: #7d798c;
+    color: #3f51b5
 }
 
 .mat-toolbar {
@@ -188,7 +260,47 @@ display: flex;
   min-height: 56px !important;
 }
 
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
 
+.flex-spacer {
+  flex: 1 1 auto;  
+}
+
+/* sidenav row */
+
+.row-sidenav {
+  justify-content: flex-start; 
+  align-items: center; 
+  display: flex;
+  text-align: center; 
+}
+
+.row-sidenav:not(.nohover):hover  {
+  background-color: #838094;
+}
+
+.select-option{
+  background-color: #54525f;
+}
+
+.color-row {
+  color: white !important;
+  background: #98bb1c  !important;
+}
+
+/* .row-sidenav:not(.nohover):hover  {
+  background-color: #838094;
+}
+
+.select-option{
+  background-color: #FF6633;
+} */
+
+.row-sidenav .mat-icon {
+  color: #d7d7d7
+}
 
 /* Clients list rows first implementation */
 /* TODO: This part is to md-card component take account if you need to change the container */
@@ -196,8 +308,8 @@ display: flex;
   text-decoration: none;
 }
 
-.custom-row .mat-card:hover {
-  background-color: #d7d7d7;
+.custom-row:hover {
+  background-color: yellow;
 }
 
 .custom-row .mat-card {
@@ -205,8 +317,13 @@ justify-content: center;
 align-items: center; 
 padding:15px; 
 margin: 10px; 
+margin-left: 10px;
+margin-right: 10px;
+margin-top: 6px;
+margin-bottom: 6px; 
 display: flex;
 }
+
 
 .custom-row .mat-card div {
  text-align: center; 
@@ -247,6 +364,11 @@ display: flex;
 
 /* End Clients row firs implementation */
 
+/* add client styles */
+.imput-edit .mat-input-wrapper {
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
 /* alternative to colors */
 .mat-fab.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {

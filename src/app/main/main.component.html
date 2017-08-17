@@ -1,30 +1,33 @@
-<md-toolbar color="primary" class="s-toolbar mat-elevation-z6" style="background-color: #393856">
-  <span style="color:orangered">S<span style="color:white">ONE</span></span>
-  <span>
-    <button md-icon-button [md-menu-trigger-for]="menu"><md-icon>more_vert</md-icon></button>
-  </span>
+<md-toolbar color="primary" class="mat-elevation-z6" style="position:relative; z-index: 10; background-color: #246da7">
+  <span style="color:#FF6633">S<span style="color:white">ONE</span></span>
+  <span class="toolbar-spacer"></span>
+  <button [md-menu-trigger-for]="menu" md-button>Manolo Alvarez</button>
+  <!-- <a href=""  style="color: white; text-decoration: none; font-size: 15px;">Manolo Alvarez</a> -->
+  <button md-icon-button><md-icon class="material-icons">notifications</md-icon></button>
+  <button md-icon-button><md-icon>more_vert</md-icon></button>
 </md-toolbar>
-<div>
-  <div class="s-row" style="height: 100vh;">
-    <div color="primary" class="s-mini-sidenav">
+<md-sidenav-container style="height: 100vh">
+  <md-sidenav style="background-color: #6E6B7C;" #sidenav mode="side" opened="true" class="docs-component-viewer-sidenav mat-sidenav mat-sidenav-opened mat-sidenav-side">
+    <nav>
+      <h3 style="background: rgba(0,0,0,.32);
+    color: hsla(0,0%,100%,.87);">Opciones</h3>
       <ul>
-        <li>
-          <a href="" [routerLink]="['/main/dashboard']">Dashboard</a>
-        </li>
-        <li>
-          <a href="" [routerLink]="['/main/clients']">Clients</a>
-        </li>
+        <div *ngFor="let option of options">
+          <li style="border-color: #848282;">
+            <a [ngClass]="{'color-row': option.isSelected}" style="color: #efefef" href="" (click)="selectOption(option)" [routerLink]="[option.url]">
+            {{option.title}}
+          </a>
+          </li>
+        </div>
       </ul>
-    </div>
-     <div style="width: 100%; height: 100%;">
-       <router-outlet></router-outlet>      
-     </div>
+    </nav>
+  </md-sidenav>
+  <div style="background-color: #adadaf; width: 100%; height: 100%;">
+    <router-outlet></router-outlet>
   </div>
- 
-  <div id="main" class="m-content">
-    <md-menu x-position="before" #menu="mdMenu">
-      <button md-menu-item>Option 1</button>
-      <button md-menu-item>Option 2</button>
-    </md-menu>
-  </div>
+</md-sidenav-container>
+<div id="main" class="m-content">
+  <md-menu x-position="before" #menu="mdMenu">
+    <button md-menu-item [routerLink]="['/login']">Salir</button>
+  </md-menu>
 </div>

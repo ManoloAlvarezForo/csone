@@ -1,0 +1,123 @@
+{
+  "clients": [
+    {
+      "_id": 11,
+      "code": "1111",
+      "name": "AGENCIA  DE VIAJE TODO TURISMO  -   NORKA",
+      "address": "CALLE JORDAN Nº 280",
+      "phone": "4505292"
+    },
+    {
+      "id": 12,
+      "code": "1212",
+      "name": "ASERRADERO RALJEVIC",
+      "address": "AVE ANICETO MEDINA Nº 111  3 1/2  CARRETERA A SACABA",
+      "phone": "7972727"
+    },
+     {
+      "id": 13,
+      "code": "1313",
+      "name": "BRAZILIAN COFFEE-PRADO",
+      "address": "AV BLANCO GALINDO KM 3 1/2 A/S LADO CRISOL A 20 PASOS CALLE PONSNASKIN Nº 248 REJA VERDE(N DIREC)",
+      "phone": "7972727"
+    },
+     {
+      "id": 14,
+      "code": "1413",
+      "name": "BROASTERIA JUANITA",
+      "address": "RECOLETA CALLE ANICETO PADILLA Nº 572 ZONA RECOLETA",
+      "phone": "7972727"
+    },
+     {
+      "id": 15,
+      "code": "1515",
+      "name": "COLEGIO LEONARDO DE VINCHI",
+      "address": "BARRIO EL MOLINO AV PETROLERA KM41/2 LETRERO POLITECNICO AL FRENTE 2 C AL ESTE BORDEAR LA SEQUIA",
+      "phone": "7972727"
+    },
+     {
+      "id": 16,
+      "code": "1615",
+      "name": "CLINICA BOLIVIANO AMERICANO",
+      "address": "CALLE REPUBLICA Nº 1076 ENTRE HONDURAS Y ANTEZANA ZONA  CANCHA",
+      "phone": "7972727"
+    },
+     {
+      "id": 17,
+      "code": "1777",
+      "name": "CAROLA ARANIEDA",
+      "address": "ZONA IRPA-IRPA- PROGRAMAR CON SR. JUAN DOMINGO PEDROSO",
+      "phone": "7972727"
+    },
+     {
+      "id": 18,
+      "code": "1870",
+      "name": "GUIDO ARZE-QUINTANILLA",
+      "address": "CALLE JESUS AGUAYO Nº 2368  ESQ MELCHOR PEREZ",
+      "phone": "7972727"
+    },
+     {
+      "id": 19,
+      "code": "1919",
+      "name": "COBOCE IRPA-IRPA",
+      "address": "TRANCA TIQUIPAYA 2 1/2 CUADRAS COLEGIO SANTA CRUZ SUBIDA CHILIMARCA",
+      "phone": "7972727"
+    },
+     {
+      "id": 20,
+      "code": "2019",
+      "name": "ELIZABETH AGUIRRE",
+      "address": "CALLE ISMAEL CESPEDES Nº 7 Y JUAN DE LA ROSA CONDOMINIO PALERMO II   ZONA SARCO",
+      "phone": "7972727"
+    },
+     {
+      "id": 21,
+      "code": "2144",
+      "name": "JUDITH CRESPO DE GUERRA",
+      "address": "CALLE ENREQUE ARCE Nº 2240 SIMON LOPEZ SICLOVIA CALA CALA CASA 2 PISOS ROSA",
+      "phone": "7972727"
+    },
+     {
+      "id": 22,
+      "code": "2219",
+      "name": "RESTAURANT LA CASA DEL GORDO",
+      "address": "CONDOMINIO SANTA LUCIA  DPTO Nº D-4 KALANPAMPA ESQ ORTIZ PACHECO 3 CUADRAS DE LA SIMON LOPEZ",
+      "phone": "7972727"
+    },
+     {
+      "id": 23,
+      "code": "2332",
+      "name": "JALDIN, ANA DE BALDERRAMA",
+      "address": "AVE AMERICA Nº 155 LIBERTADOR Y TARIJA",
+      "phone": "7972727"
+    },
+     {
+      "id": 24,
+      "code": "2423",
+      "name": "ASERRADERO VIRGEN DEL CARMEN",
+      "address": "CALLE MAYOR ROCHA Nº 231 JUNIN HAMIRAYA",
+      "phone": "7972727"
+    },
+    {
+      "id": 25,
+      "code": "2544",
+      "name": "SAN MIGUEL SANCHEZ, DANIA",
+      "address": "FINAL PANDO  PASADO  2 DA CIRCUNVALACION  LOMAS ARANJUEZ COLOR NARANJA 3 PISOS",
+      "phone": "7972727"
+    },
+    {
+      "id": 26,
+      "code": "2622",
+      "name": "CENTRO ALBINA PATIÑO",
+      "address": "CALLE LOS CEDROS Nº 2762   ZONA URB ALTO MIRADOR,(2do reten  media cuadra)",
+      "phone": "7972727"
+    },
+    {
+      "id": 27,
+      "code": "2723",
+      "name": "CITSA  COMPAÑIA INDUSTRIAL DE TABACOS",
+      "address": "CALLE M. FROTASIO   Nº 358 TEMPLO VILLA LORETO",
+      "phone": "7972727"
+    }
+  ]
+}

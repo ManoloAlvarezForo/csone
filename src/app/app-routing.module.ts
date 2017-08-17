@@ -16,12 +16,9 @@ const routes: Routes = [
     canActivateChild: [CanActivateAuthGuard],
     children: [
       { path:'dashboard', component: DashboardComponent },
-      { path: 'clients', component: ClientsComponent,
-        children:[
-          { path: ':id',
-            component: ClientComponent
-          }
-        ]}
+      { path: 'clients', component: ClientsComponent },
+      { path: 'clients/:id', component: ClientComponent },
+      { path: 'clients/new', component: ClientComponent }
     ] 
   },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },  
