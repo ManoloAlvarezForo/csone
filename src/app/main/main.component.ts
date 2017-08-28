@@ -36,7 +36,7 @@ export class MainComponent implements OnInit {
         title: "Agendar",
         icon: "event",
         isSelected: false,
-        url: '/main/clients'
+        url: '/main/scheduler'
       },
       {
         title: "Clientes",

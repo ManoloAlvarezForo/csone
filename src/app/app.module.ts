@@ -13,16 +13,17 @@ import { LoginService } from "./login/login.service";
 import { RouterModule } from '@angular/router';
 import { AddClientComponentDialog } from './clients/clients.component';
 import { ClientService } from "./client/client.service";
-
+import { FilterTextModule } from "./shared/filter-text/filter-text.module";
 import './rxjs-extensions';
 import 'hammerjs';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     routedComponents,
     AddClientComponentDialog
-  ],
+],
   imports: [
     BrowserModule,
     FormsModule,
@@ -33,7 +34,8 @@ import 'hammerjs';
     AppRoutingModule,
     RouterModule,
     ReactiveFormsModule,
-    MdNativeDateModule
+    MdNativeDateModule,
+    FilterTextModule
   ],
   providers: [
     CanActivateAuthGuard,

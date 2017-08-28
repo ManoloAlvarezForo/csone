@@ -1,0 +1,13 @@
+{
+  "client_category": [
+    {
+      "_id": 1,
+      "category_code": "1",
+      "type": "comercial"
+    },
+    {
+      "_id": 2,
+      "category_code": "2",
+      "type": "residencial"
+    }
+]}

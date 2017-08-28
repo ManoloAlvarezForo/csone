@@ -7,6 +7,9 @@ import { ClientsComponent} from './clients/clients.component';
 import { ClientComponent } from './client/client.component';
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { CanActivateAuthGuard } from './can-activate.service';
+import { SchedulerComponent } from './scheduler/scheduler.component';
+import { ClientNewComponent } from "./client/client-new.component";
+
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'main/dashboard' },
@@ -18,7 +21,8 @@ const routes: Routes = [
       { path:'dashboard', component: DashboardComponent },
       { path: 'clients', component: ClientsComponent },
       { path: 'clients/:id', component: ClientComponent },
-      { path: 'clients/new', component: ClientComponent }
+      { path: 'clients/new', component: ClientNewComponent },
+      { path: 'scheduler', component: SchedulerComponent }
     ] 
   },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },  
@@ -36,5 +40,7 @@ export const routedComponents = [
   DashboardComponent,
   ClientsComponent,
   ClientComponent,
-  PageNotFoundComponent
+  PageNotFoundComponent,
+  SchedulerComponent,
+  ClientNewComponent
 ];

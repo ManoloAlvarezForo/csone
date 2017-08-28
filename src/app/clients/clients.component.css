@@ -1,0 +1,54 @@
+.category-residencial-category {
+    color:#98bb1c !important;
+}
+
+.category-comercial-category {
+    color:#FF6633;
+}
+
+.client-row-component {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    height: 90px;
+    padding: 0 16px;
+    position: relative;
+    background-color:#f4f4f4;
+    margin-top:1px;
+    margin-bottom:1px;
+}
+
+.client-row-mdicon {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    box-sizing: content-box;
+    border-radius: 50%;
+    padding: 4px; color:#6E6B7C;
+}
+
+.client-row-information {
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    height: 20px;
+}
+
+.client-row-second-title {
+    color: rgba(0,0,0,.87);
+    font-style: italic;
+    font-size: 12.5px;
+    color: rgba(0,0,0,.87);
+}
+
+.client-row-first-title {
+    font-size: 15px;
+    color:#038fbb;
+} 
+
+ .client-row-text {
+    color: rgba(0,0,0,.87);
+    line-height: 18px;
+    font-size: 13px;
+ }

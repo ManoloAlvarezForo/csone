@@ -1,87 +1,39 @@
 <div style="height: calc(100vh - 75px)" class="s-row s-jcontent-center">
   <div style="border-radius: 2px; background-color: white; margin: 10px; width:90%; height: 100%" class="mat-elevation-z6">
-    <div class="mat-elevation-z6" style="z-index: 10; position:relative; border-radius: 2px;  align-items: center; background-color: #D7D7D7">
-      <div class="s-row" style="align-items: center; justify-content: center; align-content: center;">
+    <div class="mat-elevation-z6" style="height: 80px; padding-left:10px; padding-right: 10px; z-index: 10; position:relative; border-radius: 2px;  align-items: center; background-color: #D7D7D7">
+      <div class="s-row" style="height: 100%; align-items: center; justify-content: center; align-content: center;">
         <div class="s-row" style="width: 90%; height: 90px; align-items: center; margin-left: 10px; margin-right: 10px;">
-          <md-icon style="color: #FF6633;" class="materiarl-icons">search</md-icon>
-          <md-input-container style="width: 100%; margin-left: 5px;">
-            <input mdInput placeholder="Buscar">
-          </md-input-container>
+          <md-icon color="accent" class="materiarl-icons">search</md-icon>
+          <story-filter-text style="width: 100%; margin-left: 5px;" (changed)="filterChanged($event)"></story-filter-text>
         </div>
-        <button [routerLink]="['/main/clients/new']" style="background-color: #FF6633;" md-fab><md-icon class="material-icons">person_add</md-icon></button>
+        <div class="s-row" style="width:130px; align-items: center; justify-content: flex-end; margin-right: 10px;">
+            <button md-icon-button color="accent" (click)="beforePage()" [disabled]="enableBeforePage()"><md-icon class="material-icons">navigate_before</md-icon></button>
+            <div>{{currentPage}}/{{pageCount}}</div>
+            <button md-icon-button color="accent" (click)="nextPage()" [disabled]="enableNextPage()"><md-icon class="material-icons">navigate_next</md-icon></button>
+          </div>
+        <button [routerLink]="['/main/clients/new']" md-fab><md-icon class="material-icons">person_add</md-icon></button>
       </div>
-      <!-- <div class="header-list">
-        <md-card>
-          <div class="row-10">Codigo</div>
-          <div class="row-40">Nombre</div>
-          <div class="row-40">Direccion</div>
-          <div class="row-10">Telefono</div>
-        </md-card>
-      </div> -->
     </div>
     <div class="scroller-clients" style="background-color:#d7d7d7">
-      <!-- <div *ngFor="let client of clients | async">
-        <a class="custom-row" href="" [routerLink]="['/main/clients', client.code]">
-          <md-card style="background-color:#f4f4f4"> 
-            
-          </md-card>
-        </a>
-      </div> -->
-      <!-- <md-list>
-        <md-list-item [routerLink]="['/main/clients', client.code]" class="height-row mat-elevation-z4" style="text-decoration: none; background-color:#f4f4f4; margin-top:7px; margin-bottom:7px; margin-left:15px; margin-right:15px;"
-          *ngFor="let client of clients | async">
-          <md-icon style="color:#6E6B7C" md-list-icon>person</md-icon>
-          <p style="font-size:13px" md-line><b style="color:#246da7">{{client.code}} - {{client.name}}</b></p>
-          <p style="font-size: 12px" md-line>{{client.address}} </p>
-          <p style="font-size: 12px" md-line>Contacto: {{client.phone}} </p>
-        </md-list-item>
-      </md-list>      -->
-      <!-- <a *ngFor="let client of clients | async" [routerLink]="['/main/clients', client.code]" class="height-row mat-elevation-z4" style="text-decoration: none; background-color:#f4f4f4; margin-top:7px; margin-bottom:7px; margin-left:15px; margin-right:15px;">
-           <md-card style="display: flex; flex-direction: row; align-items: center; box-sizing: border-box; height: 48px; padding: 0 16px; position: relative;">
-            <md-icon style="color:#6E6B7C" md-list-icon>person</md-icon>
-            <div style="display: flex; flex-direction: column; width: 100%; box-sizing: border-box; overflow: hidden; padding: 0 16px;">
-              <p style="font-size:13px" md-line><b style="color:#246da7">{{client.code}} - {{client.name}}</b></p>
-              <p style="font-size: 12px" md-line>{{client.address}} </p>
-              <p style="font-size: 12px" md-line>Contacto: {{client.phone}} </p>
-            </div>
-          </md-card> 
-        </a> -->
-
-      <div>
-        <a *ngFor="let client of clients | async" class="custom-row" href="" [routerLink]="['/main/clients', client.code]">
-          <div class="s-list-row" style="display: flex;
-    flex-direction: row;
-    align-items: center;
-    box-sizing: border-box;
-    height: 90px;
-    padding: 0 16px;
-    position: relative; background-color:#f4f4f4; margin-top:1px; margin-bottom:1px; margin-left:10px; margin-right:10px;">
-            <md-icon style="    width: 24px;
-    height: 24px;
-    font-size: 24px;
-    box-sizing: content-box;
-    border-radius: 50%;
-    padding: 4px; color:#6E6B7C" md-list-icon>person</md-icon>
+      <div style="margin-left:3px; margin-right: 3px;">
+        <a *ngFor="let client of filteredClients" class="custom-row" href="" [routerLink]="['/main/clients', client.code]">
+          <div class="s-list-row client-row-component">
+            <md-icon class="client-row-mdicon" md-list-icon>account_box</md-icon>
             <div class="list-line-content">
-              <div class="s-row" style="margin: 0;
-    padding: 0;
-    align-items: center;
-    height: 20px;">
-                <p style="font-size: 13px" class="list-text"><b style="color:#246da7">{{client.name}}</b></p>
-                 <span class="toolbar-spacer"></span>
-                <p style="color: rgba(0,0,0,.87);     font-style: italic;
-    font-size: 12px;
-    color: rgba(0,0,0,.87);">code: {{client.code}}</p>
+              <div class="s-row client-row-information">
+                <p class="client-row-first-title list-text">{{client.name}} {{client.companyName}}</p>
+                <span class="toolbar-spacer"></span>
+                <p class="client-row-second-title">
+                  <i>{{client.nro}} - {{client.category}}</i>
+                </p>
               </div>
-              <p style="color: rgba(0,0,0,.87); font-size: 12px" class="list-text">{{client.address}} </p>
-              <p style="color: rgba(0,0,0,.87); font-size: 12px" class="list-text">{{client.phone}}</p>
+              <p class="list-text client-row-text">Dir. {{client.address}} </p>
+              <p class="list-text client-row-text">Tel: {{client.phone}} Cel: {{client.cellphone}} Email: {{client.email}}</p>
             </div>
-
           </div>
         </a>
       </div>
-
     </div>
   </div>
 </div>
-<!-- style="background-color: #eae8f5" -->
+<!-- [ngClass]="{'category-residencial-category': isResidencialCategory(client.category)}" -->

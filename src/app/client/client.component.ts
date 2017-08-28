@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Client } from "../data-models";
+import { ClientService } from "./client.service";
 
 @Component({
   selector: 'app-client',
@@ -6,12 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit {
+  client: Client;
   selectedCategory: string;
   selectedCity: string;
   selectedState: string;
   favoriteSeason: string;
-  phoneValue = '';
+  phoneNumber:string;
+  phone = {number:'', type: {type:'', typeIcon: 'phone_iphone', color:'orange'}};
+  nitNameValue = '';
+  nitNumberValue = '';
   phones = []
+  nits = []
 
   checked = false;
   indeterminate = false;
@@ -40,6 +47,12 @@ export class ClientComponent implements OnInit {
     { value: 'Pando', viewValue: 'Pando'}
   ]
 
+  phoneTypes = [
+    {type: 'Casa', typeIcon:'home', color:'green'},
+    {type: 'Trabajo', typeIcon:'business', color:'blue'},
+    {type: 'Mobil', typeIcon:'phone_iphone', color:'orange'}
+  ]
+
   seasons = [
     'Winter',
     'Spring',
@@ -47,19 +60,85 @@ export class ClientComponent implements OnInit {
     'Autumn',
   ];
 
-  addPhone() {
-    this.phones.push({number: this.phoneValue});
-    this.phoneValue = '';
+  constructor(private clientService: ClientService) { 
+    this.phones = [];
+    this.nits = [];
   }
 
+  getClient(id) {
+    this.clientService.getClient(id)
+      .subscribe(client => {
+        this.client  = client;
+      },
+      error => {
+        console.log('error occurred here');
+        console.log(error);
+      },
+       () => {
+        console.log('vehicle retrieval completed');
+      });
+  }
+
+  ngOnInit() {
+  }
+
+  /**
+   * Adds the phone in the client edit or new based in the this.phone.number variable.
+   */
+  addPhone() {
+    this.phone.number = this.phoneNumber;
+    this.phones.unshift(this.phone);
+    this.phoneNumber = '';
+    this.phone = {number:'', type: {type:'', typeIcon: 'phone_iphone', color:'orange'}};
+  }
+
+  /**
+   * Sets the current phone variable selected or edited.
+   * 
+   * @param phone Current phone value selected or edited.
+   */
+  setCurrentPhone(phone) {
+    this.phone = phone;
+  }
+
+  /**
+   * Removes the current phone selected or edited.
+   * 
+   * @param phone Current phone selected or edited
+   */
   removePhone(phone) {
     let indexPhone = this.phones.indexOf(phone);
     this.phones.splice(indexPhone, 1);
   }
 
-  constructor() { 
-    this.phones = [];
+  /**
+   * Sets the phone type to the current phone variable.
+   * 
+   * @param phoneType The phone type to be added to the current phone.
+   */
+  setPhoneType(phoneType) {
+    this.phone.type = phoneType;
+    this.phone = {number:'', type: {type:'', typeIcon: 'phone_iphone', color:'orange'}};
   }
-  ngOnInit() {
+
+  /**
+   * Adds the nit selected in the field to the nits list.
+   */
+  addNit() {
+    this.nits.unshift({name: this.nitNameValue, number: this.nitNumberValue});
+    this.nitNameValue = '';
+    this.nitNumberValue = '';
   }
+
+  /**
+   * Removes the current nit selected and received like a parameter.
+   * 
+   * @param nit Current nit selected.
+   */
+  removeNit(nit) {
+    let indexNit = this.nits.indexOf(nit);
+    this.nits.splice(indexNit, 1);
+  }
+
+  
 }
