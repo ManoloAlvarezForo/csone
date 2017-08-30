@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { AddClientComponentDialog } from './clients/clients.component';
 import { ClientService } from "./client/client.service";
 import { FilterTextModule } from "./shared/filter-text/filter-text.module";
+import { AgmCoreModule } from '@agm/core';
 import './rxjs-extensions';
 import 'hammerjs';
 
@@ -35,7 +36,10 @@ import 'hammerjs';
     RouterModule,
     ReactiveFormsModule,
     MdNativeDateModule,
-    FilterTextModule
+    FilterTextModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDl069Y2V3gx5HpL6eUzA2x1BnKwz1A3Sg'
+    })
   ],
   providers: [
     CanActivateAuthGuard,

@@ -83,13 +83,47 @@
                                             {{category.viewValue}}
                                         </md-option>
                                     </md-select>
-                                    
+
                                     <!-- <md-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
                     <md-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
                         {{season}}
                     </md-radio-button>
                 </md-radio-group>
                 <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div> -->
+
+
+
+                                    <!-- <sebm-google-map 
+                [latitude]="lat"
+                [longitude]="lng"
+                [zoom]="zoom"
+                [disableDefaultUI]="false"
+                [zoomControl]="false"
+                (mapClick)="mapClicked($event)">
+              
+                <sebm-google-map-marker 
+                    *ngFor="let m of markers; let i = index"
+                    (markerClick)="clickedMarker(m.label, i)"
+                    [latitude]="m.lat"
+                    [longitude]="m.lng"
+                    [label]="m.label"
+                    [markerDraggable]="m.draggable"
+                    (dragEnd)="markerDragEnd(m, $event)">
+                    
+                  <sebm-google-map-info-window>
+                    <strong>InfoWindow content</strong>
+                  </sebm-google-map-info-window>
+                  
+                </sebm-google-map-marker>
+                
+                <sebm-google-map-circle [latitude]="lat + 0.3" [longitude]="lng" 
+                    [radius]="5000"
+                    [fillColor]="'red'"
+                    [circleDraggable]="true"
+                    [editable]="true">
+                </sebm-google-map-circle>
+          
+              </sebm-google-map> -->
                                 </md-card-content>
                             </md-card>
 
@@ -105,7 +139,7 @@
                                                     <input [(ngModel)]="nitNumberValue" mdInput placeholder="NIT">
                                                 </md-input-container>
                                                 <button (click)="addNit()" color="primary" [disabled]="!(this.nitNameValue && this.nitNumberValue)" md-icon-button><md-icon class="material-icons">add_circle</md-icon></button>
-                                                
+
                                             </div>
                                             <div class="s-colum" style="width:90%;">
                                                 <div *ngFor="let nit of nits" class="s-row" style="margin-bottom:1px; align-items:center; justify-content:center; height:25px; border-radius: 25px; background-color: #d2d2d2; ">
@@ -118,26 +152,26 @@
                                                 </div>
                                             </div>
                                         </div>
-                                            <div  class="s-row" style="height:100%; align-items:flex-start;">
-                                                <div  class="s-column" style="width:100%">
-                                                    <div class="s-row" style="align-items: center;">
-                                                        <md-input-container style="width:90%;">
-                                                            <input mdInput placeholder="Telefono" [(ngModel)]="phoneNumber">
-                                                        </md-input-container>
-                                                        <button color="primary" md-icon-button [disabled]="!phoneNumber" (click)="addPhone()"><md-icon class="material-icons">add_circle</md-icon></button>
-                                                    </div>
-                                                    <div class="s-colum" style="width:90%;">
-                                                        <div *ngFor="let phone of phones"class="s-row" style="margin-bottom:1px; align-items:center; justify-content:center; height:25px; border-radius: 25px; background-color: #d2d2d2; ">
-                                                            <div class="s-row" style="color:white; align-items:center; height:25px; margin-left:5px;">
-                                                                <button style="color:#246da7;" (click)="setCurrentPhone(phone)" md-icon-button [md-menu-trigger-for]="menu"><md-icon class="material-icons">{{phone.type.typeIcon}}</md-icon></button>
-                                                                <p>{{phone.number}}</p>
-                                                                <div class="flex-spacer"></div>
-                                                                <button (click)="removePhone(phone)" style="height:24px; width:24px; line-height:24px; background-color: #a9a4a4;" md-icon-button><md-icon style="font-size:15px;">clear</md-icon></button>
-                                                            </div>
+                                        <div class="s-row" style="height:100%; align-items:flex-start;">
+                                            <div class="s-column" style="width:100%">
+                                                <div class="s-row" style="align-items: center;">
+                                                    <md-input-container style="width:90%;">
+                                                        <input mdInput placeholder="Telefono" [(ngModel)]="phoneNumber">
+                                                    </md-input-container>
+                                                    <button color="primary" md-icon-button [disabled]="!phoneNumber" (click)="addPhone()"><md-icon class="material-icons">add_circle</md-icon></button>
+                                                </div>
+                                                <div class="s-colum" style="width:90%;">
+                                                    <div *ngFor="let phone of phones" class="s-row" style="margin-bottom:1px; align-items:center; justify-content:center; height:25px; border-radius: 25px; background-color: #d2d2d2; ">
+                                                        <div class="s-row" style="color:white; align-items:center; height:25px; margin-left:5px;">
+                                                            <button style="color:#246da7;" (click)="setCurrentPhone(phone)" md-icon-button [md-menu-trigger-for]="menu"><md-icon class="material-icons">{{phone.type.typeIcon}}</md-icon></button>
+                                                            <p>{{phone.number}}</p>
+                                                            <div class="flex-spacer"></div>
+                                                            <button (click)="removePhone(phone)" style="height:24px; width:24px; line-height:24px; background-color: #a9a4a4;" md-icon-button><md-icon style="font-size:15px;">clear</md-icon></button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                     </div>
 
                                 </md-card-content>
@@ -147,15 +181,37 @@
 
                         <md-card style="margin-top: 5px; margin-bottom: 5px;">
                             <md-card-content>
-                                <h3 class="example-h2">Servicio</h3>
-                                <md-input-container>
-                                    <input mdInput [mdDatepicker]="picker" placeholder="Inicio de servicio">
-                                    <button mdSuffix [mdDatepickerToggle]="picker"></button>
-                                </md-input-container>
-                                <md-datepicker #picker></md-datepicker>
+                                <div class="s-row">
+                                    <div style="width:60%;">
+                                        <h4>{{ title }}</h4>
+
+                                        <!-- this creates a google map on the page with the given lat/lng from -->
+                                        <!-- the component as the initial center of the map: -->
+                                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="mapClicked($event)">
+                                            <agm-marker (dragEnd)="markerDragEnd(marker, $event)" [markerDraggable]="marker.draggable" (markerClick)="clickedMarker(marker.label, 1)"
+                                                [latitude]="marker.lat" [longitude]="marker.lng">
+                                                <agm-info-window>
+                                                    Hi, this is the content of the <strong>info window</strong>
+                                                </agm-info-window>
+                                            </agm-marker>
+
+                                        </agm-map>
+                                    </div>
+                                    <div style="width:40%; margin-left:10px; margin-right:10px;">
+                                        <h3 class="example-h2">Servicio</h3>
+                                        <md-input-container>
+                                            <input mdInput [mdDatepicker]="picker" placeholder="Inicio de servicio">
+                                            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+                                        </md-input-container>
+                                        <md-datepicker #picker></md-datepicker>
+                                    </div>
+
+                                </div>
+
+
                             </md-card-content>
                         </md-card>
-                        
+
 
                     </div>
                 </div>
@@ -198,7 +254,7 @@
     </div>
 </div>
 <div id="phoneOptions" class="m-content">
-  <md-menu x-position="before" #menu="mdMenu">
-    <button  *ngFor="let phoneType of phoneTypes" (click)="setPhoneType(phoneType)" md-menu-item><md-icon class="material-icons">{{phoneType.typeIcon}}</md-icon>{{phoneType.type}}</button>
-  </md-menu>
+    <md-menu x-position="before" #menu="mdMenu">
+        <button *ngFor="let phoneType of phoneTypes" (click)="setPhoneType(phoneType)" md-menu-item><md-icon class="material-icons">{{phoneType.typeIcon}}</md-icon>{{phoneType.type}}</button>
+    </md-menu>
 </div>

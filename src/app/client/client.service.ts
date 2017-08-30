@@ -15,7 +15,7 @@ export class ClientService {
     options = new RequestOptions();
 
     constructor(private http: Http) {
-        this.headers.append('Access-Control-Allow-Origin', '*');
+        // this.headers.append('Access-Control-Allow-Origin', '*');
         this.headers.append("Content-Type", "application/json");
         this.options.headers = this.headers;
     }

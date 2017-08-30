@@ -2,12 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from "../data-models";
 import { ClientService } from "./client.service";
 
+
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit {
+  // localization
+  title: string = 'Direccion';
+  lat: number = -17.3664146;
+  lng: number = -66.1748227;
+  zoom: number = 15;
+  marker = {
+    lat: 0,
+    lng: 0,
+    label: 'Nro: 2345 puerta roja',
+    draggable: true
+  }
+  //localization config end
   client: Client;
   selectedCategory: string;
   selectedCity: string;
@@ -64,6 +77,21 @@ export class ClientComponent implements OnInit {
     this.phones = [];
     this.nits = [];
   }
+
+  //maps
+  mapClicked($event) {
+    this.marker.lat = $event.coords.lat;
+    this.marker.lng = $event.coords.lng;
+  }
+
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`)
+  }
+
+  markerDragEnd(marker, $event: MouseEvent) {
+    console.log('dragEnd', marker, $event);
+  }
+  
 
   getClient(id) {
     this.clientService.getClient(id)
