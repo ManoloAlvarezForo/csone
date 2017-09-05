@@ -31,6 +31,14 @@ export class ClientService {
             .catch(this.handleError);
     }
 
+    updateClient(client: Client) {
+        let body = JSON.stringify(client);
+        return this.http.patch(clientsUrl + "/" + client._id, body, this.options)
+            .map((res: Response) => {
+                return res.json();
+            })
+    }
+
     /**
      * Adds the new client in the Database.
      * 
@@ -82,6 +90,15 @@ export class ClientService {
         return this.http.get(clientsUrl + "/" + id).
             map((res: Response) => res.json()).
             catch(this.handleError);
+    }
+
+    /**
+     * Gets the enums that contain the Client model from the Database.
+     */
+    getClientEnums() {
+        return this.http.get(clientsUrl + "/" + "enums").
+        map((res: Response) => res.json()).
+        catch(this.handleError);
     }
 
     /**

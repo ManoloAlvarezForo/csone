@@ -1,3 +1,25 @@
 agm-map {
     height: 300px;
+    width: 500px;
   }
+
+/* .add-button {
+  color: white;
+}
+
+.add-button:hover {
+  color: rgba(0,0,0,.38);;
+} */
+
+.phones-margin-top {
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+
+.type-phone-width {
+  width: 30% !important;
+}
+
+.disabled-color-custom {
+  color: rgba(0,0,0,.87);
+}

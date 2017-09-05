@@ -189,6 +189,20 @@ display: flex;
 
 span.mat-select-placeholder.ng-trigger.ng-trigger-transformPlaceholder {
   font-size: 14px;
+  margin-bottom: -10px;
+}
+
+.custom-md-select {
+  margin-top: -10px;
+}
+
+.custom-md-select .mat-select-trigger .mat-select-value .mat-select-value-text {
+  font-size: 14px !important;
+  color: rgba(0,0,0,.87);  
+}
+
+.custom-md-select .mat-select-trigger .mat-select-placeholder.ng-trigger.ng-trigger-transformPlaceholder {
+  margin-bottom: -10px;
 }
 
 

@@ -16,19 +16,19 @@
     </div>
     <div class="scroller-clients" style="background-color:#d7d7d7">
       <div style="margin-left:3px; margin-right: 3px;">
-        <a *ngFor="let client of filteredClients" class="custom-row" href="" [routerLink]="['/main/clients', client.code]">
+        <a *ngFor="let client of filteredClients" class="custom-row" href="" [routerLink]="['/main/clients/', client._id]">
           <div class="s-list-row client-row-component">
-            <md-icon class="client-row-mdicon" md-list-icon>account_box</md-icon>
+            <md-icon class="client-row-mdicon" md-list-icon>account_circle</md-icon>
             <div class="list-line-content">
               <div class="s-row client-row-information">
                 <p class="client-row-first-title list-text">{{client.name}} {{client.companyName}}</p>
                 <span class="toolbar-spacer"></span>
                 <p class="client-row-second-title">
-                  <i>{{client.nro}} - {{client.category}}</i>
+                  <i><span style="color: #ff4081">{{client.nro}}</span> / {{client.category}}</i>
                 </p>
               </div>
               <p class="list-text client-row-text">Dir. {{client.address}} </p>
-              <p class="list-text client-row-text">Tel: {{client.phone}} Cel: {{client.cellphone}} Email: {{client.email}}</p>
+              <p class="list-text client-row-text">Telefonos: {{getPhones(client)}} Email: {{client.email}}</p>
             </div>
           </div>
         </a>
