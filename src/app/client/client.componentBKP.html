@@ -1,0 +1,260 @@
+<div style="height: calc(100vh - 75px)" class="s-row s-jcontent-center">
+    <div style="border-radius: 2px; background-color: white; margin: 10px; width:90%; height: 100%" class="mat-elevation-z6">
+        <md-toolbar color="primary" class="s-toolbar" style="position:relative; z-index: 10; height: 56px; background-color: #D7D7D7">
+            <md-icon class="material-icons" style="margin: 5px; color:#246da7">person</md-icon>
+            <span style="color:#246da7">Agregar cliente</span>
+            <span class="toolbar-spacer"></span>
+            <button md-icon-button><md-icon style="color: #246da7">edit</md-icon></button>
+            <button md-icon-button><md-icon style="color: #246da7">clear</md-icon></button>
+            <button md-icon-button><md-icon style="color: #246da7">done</md-icon></button>
+        </md-toolbar>
+        <md-tab-group style="margin-left: 15px; margin-right: 15px;">
+            <md-tab>
+                <ng-template md-tab-label>
+                    Informacion
+                </ng-template>
+                <div class="scroller-client">
+                    <div style="z-index:1; margin-top:15px; margin-left:30px; margin-right:30px;">
+                        <div class="s-row">
+                            <md-card style="width:60%; margin-top: 7px; margin-bottom: 7px; margin-right: 3px;">
+                                <md-card-content>
+                                    <!-- <section class="example-section">
+                            <md-checkbox class="example-margin" [(ngModel)]="checked">Checked</md-checkbox>
+                            <md-checkbox class="example-margin" [(ngModel)]="indeterminate">Indeterminate</md-checkbox>
+                        </section>
+                        <section class="example-section">
+                            <label class="example-margin">Align:</label>
+                            <md-radio-group [(ngModel)]="align">
+                                <md-radio-button class="example-margin" value="start">Start</md-radio-button>
+                                <md-radio-button class="example-margin" value="end">End</md-radio-button>
+                            </md-radio-group>
+                        </section>
+
+                        <section class="example-section">
+                            <md-checkbox class="example-margin" [(ngModel)]="disabled">Disabled</md-checkbox>
+                        </section>
+                        <h2 class="example-h2">Result</h2>
+
+                        <section class="example-section">
+                            <md-checkbox class="example-margin" [checked]="checked" [indeterminate]="indeterminate" [align]="align" [disabled]="disabled">
+                                I'm a checkbox
+                            </md-checkbox>
+                        </section> -->
+                                    <md-input-container style="width: 49%;" class="example-full-width">
+                                        <input mdInput placeholder="Nombre">
+                                    </md-input-container>
+                                    <md-input-container style="width: 49%;" class="example-full-width">
+                                        <input mdInput placeholder="Empresa">
+                                    </md-input-container>
+                                    <!-- <md-input-container style="width: 49%;" class="example-full-width">
+                                        <input mdInput placeholder="Nombre NIT">
+                                    </md-input-container>
+                                    <md-input-container style="width: 49%;" class="example-full-width">
+                                        <input mdInput placeholder="NIT">
+                                    </md-input-container> -->
+                                    <md-input-container style="width: 99%;" class="example-full-width">
+                                        <input mdInput placeholder="Direccion">
+                                    </md-input-container>
+                                    <md-input-container style="width: 49%;" class="example-full-width">
+                                        <input mdInput placeholder="Email">
+                                    </md-input-container>
+                                    <!-- <md-input-container style="margin-right:10px; margin-left:10px; margin-top:10px; margin-bottom:10px;width: 12%;" class="example-full-width">
+                                        <input mdInput placeholder="Telefono">
+                                    </md-input-container>
+                                    <md-input-container style="margin-right:10px; margin-left:10px; margin-top:10px; margin-bottom:10px;width: 12%;" class="example-full-width">
+                                        <input mdInput placeholder="Fax">
+                                    </md-input-container>
+                                    <md-input-container style="margin-right:10px; margin-left:10px; margin-top:10px; margin-bottom:10px;width: 12%;" class="example-full-width">
+                                        <input mdInput placeholder="Celular">
+                                    </md-input-container> -->
+                                    <md-select style="margin-top:20px; margin-bottom:15px; width: 49%;" placeholder="Ciudad" [(ngModel)]="selectedCity" name="city">
+                                        <md-option *ngFor="let city of cityTypes" [value]="city">
+                                            {{city}}
+                                        </md-option>
+                                    </md-select>
+                                    <!-- <md-select style="margin-top:20px; margin-bottom:15px; width: 49%;" placeholder="Estado" [(ngModel)]="selectedState" name="state">
+                                        <md-option *ngFor="let state of states" [value]="state.value">
+                                            {{state.viewValue}}
+                                        </md-option>
+                                    </md-select> -->
+                                    <md-select style="margin-top:20px; margin-bottom:15px; width: 49%;" placeholder="Categoria" [(ngModel)]="selectedCategory"
+                                        name="category">
+                                        <md-option *ngFor="let category of categoryTypes" [value]="category">
+                                            {{category}}
+                                        </md-option>
+                                    </md-select>
+
+                                    <!-- <md-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
+                    <md-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                        {{season}}
+                    </md-radio-button>
+                </md-radio-group>
+                <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div> -->
+
+
+
+                                    <!-- <sebm-google-map 
+                [latitude]="lat"
+                [longitude]="lng"
+                [zoom]="zoom"
+                [disableDefaultUI]="false"
+                [zoomControl]="false"
+                (mapClick)="mapClicked($event)">
+              
+                <sebm-google-map-marker 
+                    *ngFor="let m of markers; let i = index"
+                    (markerClick)="clickedMarker(m.label, i)"
+                    [latitude]="m.lat"
+                    [longitude]="m.lng"
+                    [label]="m.label"
+                    [markerDraggable]="m.draggable"
+                    (dragEnd)="markerDragEnd(m, $event)">
+                    
+                  <sebm-google-map-info-window>
+                    <strong>InfoWindow content</strong>
+                  </sebm-google-map-info-window>
+                  
+                </sebm-google-map-marker>
+                
+                <sebm-google-map-circle [latitude]="lat + 0.3" [longitude]="lng" 
+                    [radius]="5000"
+                    [fillColor]="'red'"
+                    [circleDraggable]="true"
+                    [editable]="true">
+                </sebm-google-map-circle>
+          
+              </sebm-google-map> -->
+                                </md-card-content>
+                            </md-card>
+
+                            <md-card style="width:40%; margin-top: 7px; margin-bottom: 7px; margin-left:3px;">
+                                <md-card-content>
+                                    <div class="s-column">
+                                        <div style="width: 100%" class="s-column">
+                                            <div class="s-row" style="width: 100%; align-items: center;">
+                                                <md-input-container style="margin-right:10px; width: 80%;" class="example-full-width">
+                                                    <input [(ngModel)]="nitNameValue" mdInput placeholder="Nombre NIT">
+                                                </md-input-container>
+                                                <md-input-container style="width: 80%;" class="example-full-width">
+                                                    <input [(ngModel)]="nitNumberValue" mdInput placeholder="NIT">
+                                                </md-input-container>
+                                                <button (click)="addNit()" color="primary" [disabled]="!(this.nitNameValue && this.nitNumberValue)" md-icon-button><md-icon class="material-icons">add_circle</md-icon></button>
+
+                                            </div>
+                                            <div class="s-colum" style="width:90%;">
+                                                <div *ngFor="let nit of nits" class="s-row" style="margin-bottom:1px; align-items:center; justify-content:center; height:25px; border-radius: 25px; background-color: #d2d2d2; ">
+                                                    <div class="s-row" style="color:white; align-items:center; height:25px; margin-left:5px;">
+                                                        <p style="width:50%">{{nit.name}}</p>
+                                                        <p style="width:50%">{{nit.number}}</p>
+                                                        <div class="flex-spacer"></div>
+                                                        <button (click)="removeNit(nit)" style="height:24px; width:24px; line-height:24px; background-color: #a9a4a4;" md-icon-button><md-icon style="font-size:15px;">clear</md-icon></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="s-row" style="height:100%; align-items:flex-start;">
+                                            <div class="s-column" style="width:100%">
+                                                <div class="s-row" style="align-items: center;">
+                                                    <md-input-container style="width:90%;">
+                                                        <input mdInput placeholder="Telefono" [(ngModel)]="phoneNumber">
+                                                    </md-input-container>
+                                                    <button color="primary" md-icon-button [disabled]="!phoneNumber" (click)="addPhone()"><md-icon class="material-icons">add_circle</md-icon></button>
+                                                </div>
+                                                <div class="s-colum" style="width:90%;">
+                                                    <div *ngFor="let phone of phones" class="s-row" style="margin-bottom:1px; align-items:center; justify-content:center; height:25px; border-radius: 25px; background-color: #d2d2d2; ">
+                                                        <div class="s-row" style="color:white; align-items:center; height:25px; margin-left:5px;">
+                                                            <button color="accent" (click)="setCurrentPhone(phone)" md-icon-button [md-menu-trigger-for]="menu"><md-icon class="material-icons">{{phone.type.typeIcon}}</md-icon></button>
+                                                            <p>{{phone.number}}</p>
+                                                            <div class="flex-spacer"></div>
+                                                            <button (click)="removePhone(phone)" style="height:24px; width:24px; line-height:24px; background-color: #a9a4a4;" md-icon-button><md-icon style="font-size:15px;">clear</md-icon></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </md-card-content>
+                            </md-card>
+                        </div>
+
+
+                        <md-card style="margin-top: 5px; margin-bottom: 5px;">
+                            <md-card-content>
+                                <div class="s-row">
+                                    <div style="width:60%;">
+                                        <h4>{{ title }}</h4>
+
+                                        <!-- this creates a google map on the page with the given lat/lng from -->
+                                        <!-- the component as the initial center of the map: -->
+                                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="mapClicked($event)">
+                                            <agm-marker (dragEnd)="markerDragEnd(marker, $event)" [markerDraggable]="marker.draggable" (markerClick)="clickedMarker(marker.label, 1)"
+                                                [latitude]="marker.lat" [longitude]="marker.lng">
+                                                <agm-info-window>
+                                                    Hi, this is the content of the <strong>info window</strong>
+                                                </agm-info-window>
+                                            </agm-marker>
+
+                                        </agm-map>
+                                    </div>
+                                    <div style="width:40%; margin-left:10px; margin-right:10px;">
+                                        <h3 class="example-h2">Servicio</h3>
+                                        <md-input-container>
+                                            <input mdInput [mdDatepicker]="picker" placeholder="Inicio de servicio">
+                                            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+                                        </md-input-container>
+                                        <md-datepicker #picker></md-datepicker>
+                                    </div>
+
+                                </div>
+
+
+                            </md-card-content>
+                        </md-card>
+
+
+                    </div>
+                </div>
+            </md-tab>
+            <md-tab>
+                <ng-template md-tab-label>
+                    Controles
+                </ng-template>
+                <div class="s-row" style="align-items: center;
+    align-content: center;
+    justify-content: center;
+    color: #c7c7c7;">
+                    <h3>No hay datos</h3>
+                </div>
+            </md-tab>
+            <md-tab>
+                <ng-template md-tab-label>
+                    Llamadas
+                </ng-template>
+                <div class="s-row" style="align-items: center;
+    align-content: center;
+    justify-content: center;
+    color: #c7c7c7;">
+                    <h3>No hay datos</h3>
+                </div>
+            </md-tab>
+            <md-tab>
+                <ng-template md-tab-label>
+                    Pagos
+                </ng-template>
+                <div class="s-row" style="align-items: center;
+    align-content: center;
+    justify-content: center;
+    color: #c7c7c7;">
+                    <h3>No hay datos</h3>
+                </div>
+            </md-tab>
+        </md-tab-group>
+
+    </div>
+</div>
+<div id="phoneOptions" class="m-content">
+    <md-menu x-position="before" #menu="mdMenu">
+        <button *ngFor="let phoneType of phoneTypes" (click)="setPhoneType(phoneType)" md-menu-item><md-icon class="material-icons">{{phoneType.typeIcon}}</md-icon>{{phoneType.type}}</button>
+    </md-menu>
+</div>

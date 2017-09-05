@@ -2,8 +2,8 @@
  * The API configuration for the host and port.
  */
 export let API_CONFIG_URL = {
-  host: 'http://localhost:',
-  port:'3000'
+  host: 'https://localhost:',
+  port:'8443'
 }
 
 /**

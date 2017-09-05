@@ -11,9 +11,10 @@ import { CanActivateAuthGuard } from './can-activate.service';
 import { UserProfileService } from './login/user-profile.service';
 import { LoginService } from "./login/login.service";
 import { RouterModule } from '@angular/router';
-import { AddClientComponentDialog } from './clients/clients.component';
+import { AddLocationComponentDialog } from './client/client.component';
 import { ClientService } from "./client/client.service";
 import { FilterTextModule } from "./shared/filter-text/filter-text.module";
+import { AgmCoreModule } from '@agm/core';
 import './rxjs-extensions';
 import 'hammerjs';
 
@@ -22,7 +23,7 @@ import 'hammerjs';
   declarations: [
     AppComponent,
     routedComponents,
-    AddClientComponentDialog
+    AddLocationComponentDialog
 ],
   imports: [
     BrowserModule,
@@ -35,7 +36,10 @@ import 'hammerjs';
     RouterModule,
     ReactiveFormsModule,
     MdNativeDateModule,
-    FilterTextModule
+    FilterTextModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDl069Y2V3gx5HpL6eUzA2x1BnKwz1A3Sg'
+    })
   ],
   providers: [
     CanActivateAuthGuard,
@@ -44,7 +48,7 @@ import 'hammerjs';
     ClientService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddClientComponentDialog]
+  entryComponents: [AddLocationComponentDialog]
 })
 
 export class AppModule { }

@@ -1,63 +1,24 @@
-// export class Client {
-//     // constructor(public code: string; public name: string; public address: string; public phone: string){
-
-//     // }
-
-//     // public _id: string;
-//     public code: string;
-//     public name: string;
-//     // public last_name: string;
-//     // public nits: [Nit];
-//     public address: string;
-//     // public city: string;
-//     public phone: string;
-//     // public cellphone: string;
-//     // public fax: string;
-//     // public email: string;
-//     // public state: ClientState;
-//     // public client_type: ClientType;
-//     // public name_nit: string;
-//     // public category_client: CategoryClient;
-//     // public contract_detail: string;
-//     // public lat: string;
-//     // public long: string;
-//     // public zone: string;
-//     // public service: ClientService;
-//     location_x:string;
-//     location_y:string;
-//     controls:[ObjecId]
-// }
-
 export class Client {
     _id: string;
     nro: string;
     nrox: string;
     name: string;
     companyName: string;
-    nit: string;
-    nit2: string;
-    nit3: string;
+    nits: object[];
+    emails: string[];
+    phones: Phone[];
     address: string;
-    city: string;
-    phone: string;
-    fax: string;
-    email: string;
-    email2: string;
-    cellphone: string;
+    city: object;
+    location: object[];
     type: string;
     detail: string;
     state: string;
     register: string;
     fservice: string;
-    namenit: string;
-    namenit2: string;
-    namenit3: string;
-    phonework: string;
     contract: string;
-    category: string;
-    phonehome: string;
+    category: object;
     ncontract: string;
-    controlt: string;
+    controls: string[];
     shownit: string;
     contractname: string;
     new: string;
@@ -73,7 +34,48 @@ export class Client {
     LONGITUD: string;
     ZONA: string;
     TIPOCLI: string;
-    FOTOCASA: string
+    FOTOCASA: string;
+}
+
+export class Location {
+    lat: number;
+    lng: number;
+    zoom: number;
+}
+
+export class Nit {
+    name: string;
+    nit_number: string;
+}
+
+export class Phone {
+    number: string;
+    phonetype: PhoneType
+}
+
+export enum CategoryType {
+    'Residencial',
+    'Comercial'
+}
+
+export enum City { 
+    'La Paz', 
+    'Cochabamba',
+    'Santa Cruz',
+    'Sucre',
+    'Tarija', 
+    'Oruro', 
+    'Pando', 
+    'Beni',
+    'Potosi'
+}
+
+export enum PhoneType {
+    'Casa',
+    'Trabajo',
+    'Celular',
+    'Fax',
+    'Otro'
 }
 
 export class ClientCategory {

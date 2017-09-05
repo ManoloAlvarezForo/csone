@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { Client } from "../data-models";
 import { ClientService } from "./client.service";
+import { MdDialog } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-client',
@@ -8,7 +10,14 @@ import { ClientService } from "./client.service";
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit {
-  client: Client;
+  @Input() client: Client;
+  tempClient: Client;
+  private id: any;
+  title = 'Nuevo Cliente';
+  //localization config end
+  initWorkDate;
+  phoneTypeSelected;
+  isEditMode = true;
   selectedCategory: string;
   selectedCity: string;
   selectedState: string;
@@ -18,16 +27,16 @@ export class ClientComponent implements OnInit {
   nitNameValue = '';
   nitNumberValue = '';
   phones = []
-  nits = []
+  nits: any;
 
   checked = false;
   indeterminate = false;
   align = 'start';
   disabled = false;
 
-  categorys = [
-    { value: 'comercial', viewValue: 'Comercial' },
-    { value: 'residencial', viewValue: 'Residencial' }
+  categoryTypes = [
+    // { value: 'comercial', viewValue: 'Comercial' },
+    // { value: 'residencial', viewValue: 'Residencial' }
   ];
 
   states = [
@@ -35,23 +44,9 @@ export class ClientComponent implements OnInit {
     { value: 'inactivo', viewValue: 'Inactivo' }
   ];
 
-  citys = [
-    { value: 'La Paz', viewValue: 'La Paz'},
-    { value: 'Cochabamba', viewValue: 'Cochabamba'},
-    { value: 'Santa Cruz', viewValue: 'Santa Cruz'},
-    { value: 'Chuquisaca', viewValue: 'Chuquisaca'},
-    { value: 'Oruro', viewValue: 'Oruro'},
-    { value: 'Potosi', viewValue: 'Potosi'},
-    { value: 'Beni', viewValue: 'Beni'},
-    { value: 'Tarija', viewValue: 'Tarija'},
-    { value: 'Pando', viewValue: 'Pando'}
-  ]
+  cityTypes = [];
 
-  phoneTypes = [
-    {type: 'Casa', typeIcon:'home', color:'green'},
-    {type: 'Trabajo', typeIcon:'business', color:'blue'},
-    {type: 'Mobil', typeIcon:'phone_iphone', color:'orange'}
-  ]
+  phoneTypes = [];
 
   seasons = [
     'Winter',
@@ -60,15 +55,55 @@ export class ClientComponent implements OnInit {
     'Autumn',
   ];
 
-  constructor(private clientService: ClientService) { 
+  constructor(public dialog: MdDialog, 
+    private clientService: ClientService, 
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { 
     this.phones = [];
     this.nits = [];
+    this.initDefaultValues();
+    
+  }
+
+  ngOnInit() {
+      this.tempClient = new Client();
+      this.id = this.route.snapshot.params['id'];
+      this.getClient(this.id)
+  }
+
+  enableEditMode() {
+    this.isEditMode = true;
+  }
+
+  disableEditMode() {
+    this.isEditMode = false;
+    this.getClient(this.id);
+  }
+
+  initDefaultValues(): void {
+    this.clientService.getClientEnums()
+    .subscribe(enums => {
+      this.categoryTypes = enums["categoryTypes"]
+      this.cityTypes = enums["cityTypes"]
+      this.phoneTypes = enums["phoneTypes"]
+    },
+    error => {
+      console.log('error occurred here');
+      console.log(error);
+    },
+     () => {
+      console.log('vehicle retrieval completed');
+    });
   }
 
   getClient(id) {
     this.clientService.getClient(id)
       .subscribe(client => {
-        this.client  = client;
+        this.client = client;
+        this.tempClient = this.client;
+        this.buildTempData();
+        this.isEditMode = false;
       },
       error => {
         console.log('error occurred here');
@@ -79,7 +114,28 @@ export class ClientComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
+  saveOrUpdateClient() {
+    if(!this.tempClient._id) {
+      this.clientService.addClient(this.tempClient).
+      subscribe(client => {
+        this.id = client._id;
+        this.getClient(this.id);
+        this.router.navigate(['/main/clients/', client._id]);
+      });
+    } else {
+      this.clientService.updateClient(this.tempClient).
+      subscribe(res => {
+        this.getClient(this.id);
+      });
+    }
+
+    
+  }
+
+  buildTempData() {
+    this.nits = this.client.nits;
+    this.title = this.tempClient.name;
+    
   }
 
   /**
@@ -90,6 +146,7 @@ export class ClientComponent implements OnInit {
     this.phones.unshift(this.phone);
     this.phoneNumber = '';
     this.phone = {number:'', type: {type:'', typeIcon: 'phone_iphone', color:'orange'}};
+    this.clearPhoneFields();
   }
 
   /**
@@ -99,6 +156,7 @@ export class ClientComponent implements OnInit {
    */
   setCurrentPhone(phone) {
     this.phone = phone;
+    this.clearPhoneFields();
   }
 
   /**
@@ -109,6 +167,12 @@ export class ClientComponent implements OnInit {
   removePhone(phone) {
     let indexPhone = this.phones.indexOf(phone);
     this.phones.splice(indexPhone, 1);
+    this.phoneTypeSelected = ""
+  }
+
+  clearPhoneFields() {
+    this.phoneTypeSelected = "";
+    this.phoneNumber = "";    
   }
 
   /**
@@ -136,9 +200,47 @@ export class ClientComponent implements OnInit {
    * @param nit Current nit selected.
    */
   removeNit(nit) {
-    let indexNit = this.nits.indexOf(nit);
-    this.nits.splice(indexNit, 1);
+    let indexNit = this.tempClient.nits.indexOf(nit);
+    this.tempClient.nits.splice(indexNit, 1);
+  }
+
+   openAddLocationDialog() {
+    this.dialog.open(AddLocationComponentDialog);
   }
 
   
 }
+
+@Component({
+  selector: 'add-location-dialog',
+  templateUrl: 'add-location-dialog.html',
+  styleUrls: ['./client.component.css']
+})
+export class AddLocationComponentDialog { 
+   // localization
+   title: string = 'Direccion';
+   lat: number = -17.3664146;
+   lng: number = -66.1748227;
+   zoom: number = 15;
+   marker = {
+     lat: 0,
+     lng: 0,
+     label: 'Nro: 2345 puerta roja',
+     draggable: true
+   }
+
+    //maps
+  mapClicked($event) {
+    this.marker.lat = $event.coords.lat;
+    this.marker.lng = $event.coords.lng;
+  }
+
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`)
+  }
+
+  markerDragEnd(marker, $event: MouseEvent) {
+    console.log('dragEnd', marker, $event);
+  }
+}
+

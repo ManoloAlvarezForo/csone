@@ -16,6 +16,7 @@ export class ClientsComponent implements OnInit {
   @ViewChild(FilterTextComponent) filterComponent: FilterTextComponent;
   currentPage = 1;
   pageCount = 0;
+  phones: string;
 
   filteredClients: Client[];
   pageDb = 0;
@@ -31,6 +32,15 @@ export class ClientsComponent implements OnInit {
     private clientService: ClientService,
     private filterTextService: FilterTextService) {
     this.getFilterList(this.filterQuery);
+  }
+
+  getPhones(client) {
+    var res=""
+    for (var index = 0; index < client.phones.length; index++) {
+      res += client.phones[index].phonetype + " " + client.phones[index].number + " ";
+    }
+
+    return res;
   }
 
   ngOnInit() { }
@@ -121,9 +131,3 @@ export class ClientsComponent implements OnInit {
     this.getFilterList(this.filterQuery);
   }
 }
-
-@Component({
-  selector: 'add-client-dialog',
-  templateUrl: 'add-client-dialog.html',
-})
-export class AddClientComponentDialog { }
